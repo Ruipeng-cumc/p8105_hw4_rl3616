@@ -1,0 +1,7 @@
+---
+title: "p8105_hw4_rl3616"
+author: Ruipeng Li
+date: "`r format(Sys.Date())`"
+output: github_document
+---
+
