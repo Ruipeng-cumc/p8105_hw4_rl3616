@@ -1,7 +1,11 @@
 ---
-title: "Holy cow!"
+title: "Welcome 👋"
 ---
 
-### I have a webpage!
+### Hi I'm Ruipeng!
 
-And I can put all kinds of stuff on it!
+This is my little blog: mainly includes P8105 HW4 project, and random thoughts.
+
+- 🔭 Working on: P8105 Data Science Assignments 4.
+- 🧪 Interests: Calculating Probability on everything.
+- 🎮 Hobbies: Any games(Although everyone thinks this is not good, I can make the game not delay my study process~)

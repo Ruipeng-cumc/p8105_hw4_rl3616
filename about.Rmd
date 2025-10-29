@@ -4,6 +4,18 @@ title: "About"
 
 ### About this site
 
-Sometimes you need to say a bit about the site -- how it was made, where it's hosted, where the source code can be found. 
+This website was created as part of coursework for **P8105: Data Science for Public Health** at Columbia University.  
+It showcases data analyses, reports, and reproducible workflows written in **R Markdown**.
 
-If this is for a project or analysis, I recommend giving some details about the R package versions that you used to create the content.
+**Technical details**
+- Built using: R Markdown  
+- R version: 4.3.2  
+- Package versions:
+  - tidyverse 2.0.0
+  - ggplot2 3.4.4
+  - knitr 1.45
+  - rmarkdown 2.25
+- Hosted via: GitHub Pages  
+- Source code: [GitHub Repository](https://github.com/Ruipeng-cumc/p8105_hw4_rl3616)
+
+The goal of this site is to demonstrate **reproducible research** and **transparent communication** of data-driven insights.
