@@ -1,5 +1,5 @@
 ---
-title: "Problem 2 Flexdashboard"
+title: "Instacart Data Analysis"
 output: 
   flexdashboard::flex_dashboard:
     orientation: rows
@@ -14,9 +14,12 @@ library(flexdashboard)
 library(p8105.datasets)
 
 data("instacart")
+
+instacart_small <- instacart |> 
+  sample_n(50000)
 ```
 
-This dashboard explores Instacart orders using three plot types (bar/line/scatter) and highlights reorder behavior and timing patterns. A 50k-row sample is used for speed.
+This dashboard explores Instacart orders using three plot types (bar/line/scatter). A 50k random sample out of 1.38m total samples used in plot.
 
 Column {data-width=650}
 -----------------------------------------------------------------------
@@ -24,7 +27,7 @@ Column {data-width=650}
 ### Total Number of Orders from each Department
 
 ```{r}
-instacart |> 
+instacart_small |> 
   count(department) |> 
   mutate(department = fct_reorder(department, n)) |> 
   plot_ly(
@@ -41,14 +44,13 @@ instacart |>
 
 ```
 
-Among the 50,000 cases, the produce department has the largest purchase volume, which is related to vegetables and fruits.
 
 Column {data-width=350}
 -----------------------------------------------------------------------
 ### Order Distribution by Time of Day 
 
 ```{r}
-instacart |>
+instacart_small |>
   group_by(department, order_hour_of_day) |>
   summarise(n_orders = n(), .groups = "drop") |>
   plot_ly(
@@ -60,45 +62,41 @@ instacart |>
     text = ~paste0(
       "Department: ", department,
       "<br>Ordered hour: ", order_hour_of_day,
-      "<br>Total orders: ", n_orders),
+      "<br>Total Orders: ", n_orders),
       hoverinfo = "text"
   ) |> 
   layout(
     xaxis = list(title = "Order Hours"),
-    yaxis = list(title = "Number of Orders")
-  )
+    yaxis = list(title = "Total Number of Orders")
+    )
 ```
 
-At the same time, all purchases are concentrated during the day, with a peak from 10 am to 4 pm and a low point at 4 am.
 
 ### Reorder Rate vs Total Orders by aisle
 
 ```{r}
-aisle_summary <- instacart |>
+instacart_small |>
   group_by(aisle) |>
   summarise(
     total_orders = n(),
     reorder_rate = mean(reordered, na.rm = TRUE),
     .groups = "drop"
-  )
-
-plot_ly(
-  data = aisle_summary,
-  x = ~total_orders,
-  y = ~reorder_rate,
-  type = "scatter",
-  mode = "markers",
-  color = ~aisle,
-  text = ~paste0(
-    "aisle: ", aisle,
-    "<br>Total orders: ", total_orders,
-    "<br>Reorder rate: ", scales::percent(reorder_rate, 0.1)),
-  hoverinfo = "text"
-) |>
+  ) |> 
+  plot_ly(
+    x = ~reorder_rate,
+    y = ~total_orders,
+    type = "scatter",
+    mode = "markers",
+    color = ~aisle,
+    text = ~paste0(
+      "aisle: ", aisle,
+      "<br>Reorder rate: ", scales::percent(reorder_rate, 0.1),
+      "<br>Total Orders: ", total_orders),
+    hoverinfo = "text"
+  ) |>
   layout(
-    xaxis = list(title = "Total Orders"),
-    yaxis = list(title = "Reorder Rate")
+    yaxis = list(title = "Total Number of Orders"),
+    xaxis = list(title = "Reorder Rate")
   )
 
 ```
-

@@ -7,7 +7,7 @@ navbar:
       href: resume.html
     - text: "About"
       href: about.html
-    - text: "Instacart analysis"
+    - text: "Instacart Data Analysis"
       href: problem2_dashboard.html
   right:
     - icon: fa-envelope fa-lg
