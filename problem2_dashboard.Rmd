@@ -1,0 +1,61 @@
+---
+title: "Problem 2 Flexdashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    vertical_layout: fill
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(plotly)
+library(flexdashboard)
+library(p8105.datasets)
+
+data("instacart")
+
+data("ny_noaa")
+
+data("nyc_airbnb")
+```
+
+Plotly scatterplot
+
+```{r}
+instacart |> 
+  count(department) |> 
+  mutate(department = fct_reorder(department, n)) |> 
+  plot_ly(
+  x = ~department, 
+  y = ~n,
+  color = ~department,
+  type = "bar", 
+  colors = "viridis",
+  alpha = 0.5
+)
+
+```
+
+Plotly boxplot
+
+```{r}
+instacart_small <- instacart |> 
+  sample_n(100000)
+ 
+instacart |>
+  group_by(department, order_hour_of_day) |>
+  summarise(n_orders = n(), .groups = "drop") |>
+  plot_ly(
+    x = ~order_hour_of_day,
+    y = ~n_orders,
+    color = ~department,
+    type = "scatter",
+    mode = "lines"
+  )
+```
+
+Plotly barchart
+
+```{r}
+```
