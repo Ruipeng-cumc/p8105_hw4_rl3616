@@ -1,0 +1,43 @@
+---
+title: "Resume"
+---
+### **Ruipeng Li**
+Residency Status: US Permanent Resident  
+
+10282 Buena Ventura Dr.  
+Boca Raton, Florida, 33498  
+
+Tel: (561)-303-5815  
+Email: rl3616@cumc.columbia.edu  
+
+#### **EDUCATION**
+*Columbia University*, New York, NY <span style="float:right;">08/2025 – Present</span>  
+&nbsp;&nbsp;- M.S. in Biostatistics  
+University of Connecticut, Storrs, CT <span style="float:right;">08/2019 – 12/2023</span>  
+&nbsp;&nbsp;- BS in Applied Mathematical Sciences  
+&nbsp;&nbsp;- GPA: 3.09/4.00  
+
+*American Heritage School*, Plantation, FL <span style="float:right;">08/2015 – 06/2019</span>  
+&nbsp;&nbsp;- Excellence in Mathematics Award for Pre-Calculus (one student in each topic of Math).  
+&nbsp;&nbsp;- Excellence in Mathematics Award for Geometry (one student in each topic of Math).  
+
+#### **SKILLS**  
+&nbsp;&nbsp;- Solid mathematical foundation, good at probability theory and partial differential equations.  
+&nbsp;&nbsp;- Good at using MATLAB to build computational models, and LaTeX in academic writing.  
+&nbsp;&nbsp;- Familiar with R, RStudio, and SAS; currently applying them in biostatistics coursework.  
+
+#### **EXTRACURRICULAR ACTIVITIES**  
+*Campus Math Tutor*, UConn <span style="float:right;">08/2019 – 12/2023</span>    
+&nbsp;&nbsp;- Provided math tutoring to UConn undergraduate students during the four years of college, including homework guidance, making pre-exam review plans and assisting in review, etc. Planning to get a teacher’s certificate.  
+
+*Math Tutor*, Boca Raton, FL <span style="float:right;">02/2024 – Present</span>    
+&nbsp;&nbsp;- Tutoring high school math, from algebra, geometry to calculus.  
+
+#### **RESEARCH PROJECTS**  
+*Maxwell–Boltzmann distribution* <span style="float:right;">11/2021</span>    
+
+&nbsp;&nbsp;- Led a team to study the special probability distribution discovered by Maxwell and Boltzmann and presented the result in class, explaining in detail its probability distribution in ideal gas, as well as why Maxwell–Boltzmann distribution depends only on the magnitude of the velocity of the particles.  
+
+*2D Random Walk and Its Limiting Behavior* <span style="float:right;">05/2023</span>    
+
+&nbsp;&nbsp;- Created a 2D Random Walk and a simulation program, discussed in detail why the “snake” generated from the center will never reach the boundary when the boundary is extremely large.
