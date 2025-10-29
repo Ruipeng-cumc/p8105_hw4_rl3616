@@ -14,13 +14,7 @@ library(flexdashboard)
 library(p8105.datasets)
 
 data("instacart")
-
-data("ny_noaa")
-
-data("nyc_airbnb")
 ```
-
-Plotly scatterplot
 
 ```{r}
 instacart |> 
@@ -31,18 +25,17 @@ instacart |>
   y = ~n,
   color = ~department,
   type = "bar", 
-  colors = "viridis",
-  alpha = 0.5
-)
+  colors = "viridis"
+) |> 
+  layout(
+    xaxis = list(title = "Department Name"),
+    yaxis = list(title = "Total Number of Orders"),
+    title = "Total Orders vs Avg days before Reorder by aisle"
+  )
 
 ```
 
-Plotly boxplot
-
 ```{r}
-instacart_small <- instacart |> 
-  sample_n(100000)
- 
 instacart |>
   group_by(department, order_hour_of_day) |>
   summarise(n_orders = n(), .groups = "drop") |>
@@ -51,11 +44,100 @@ instacart |>
     y = ~n_orders,
     color = ~department,
     type = "scatter",
-    mode = "lines"
+    mode = "lines",
+    text = ~paste0(
+      "Department: ", department,
+      "<br>Ordered hour: ", order_hour_of_day,
+      "<br>Total orders: ", n_orders),
+      hoverinfo = "text"
+  ) |> 
+  layout(
+    xaxis = list(title = "Order Hours"),
+    yaxis = list(title = "Number of Orders"),
+    title = "Total Orders vs Avg days before Reorder by aisle"
   )
 ```
 
-Plotly barchart
+```{r}
+aisle_summary <- instacart |>
+  group_by(aisle) |>
+  summarise(
+    total_orders = n(),
+    reorder_rate = mean(reordered, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+plot_ly(
+  data = aisle_summary,
+  x = ~total_orders,
+  y = ~reorder_rate,
+  type = "scatter",
+  mode = "markers",
+  color = ~aisle,
+  text = ~paste0(
+    "aisle: ", aisle,
+    "<br>Total orders: ", total_orders,
+    "<br>Reorder rate: ", scales::percent(reorder_rate, 0.1)),
+  hoverinfo = "text"
+) |>
+  layout(
+    xaxis = list(title = "Total Orders"),
+    yaxis = list(title = "Reorder Rate"),
+    title = "Reorder Rate vs Total Orders by aisle"
+  )
+
+```
 
 ```{r}
+aisle_interval <- instacart |> 
+  group_by(aisle) |> 
+  summarise(
+    avg_days = mean(days_since_prior_order, na.rm = TRUE),
+    total_orders = n(),
+    .groups = "drop"
+  ) |> 
+  arrange(avg_days)
+
+plot_ly(
+  data = aisle_interval,
+  x = ~reorder(aisle, avg_days),
+  y = ~avg_days,
+  type = "bar",
+  color = ~reorder(aisle, avg_days),
+  colors = "viridis",
+  text = ~paste0(
+    "<br>Avg days: ", round(avg_days, 1),
+    "<br>Total orders: ", total_orders
+  ),
+  hoverinfo = "text"
+) |> 
+  layout(
+    title = "Average Days Since Prior Order by Aisle",
+    xaxis = list(title = "Aisle", tickangle = -45),
+    yaxis = list(title = "Average Days Between Orders"),
+    margin = list(b = 120)
+  )
+```
+
+
+```{r}
+plot_ly(
+  data = aisle_interval,
+  x = ~total_orders,
+  y = ~avg_days,
+  type = "scatter",
+  mode = "markers",
+  color = ~aisle,
+  colors = "viridis",
+  text = ~paste0(
+    "<br>Total Orders: ", total_orders,
+    "<br>Avg days before Reorder: ", round(avg_days,2)
+  ),
+  hoverinfo = "text"
+) |> 
+  layout(
+    xaxis = list(title = "Total Orders"),
+    yaxis = list(title = "Avg days before Reorder"),
+    title = "Total Orders vs Avg days before Reorder by aisle"
+  )
 ```
